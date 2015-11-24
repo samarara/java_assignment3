@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Lucas
+ * @author Lucas AND SANDES
  */
 public class DataAccess {
     private Connection conn;
