@@ -84,7 +84,7 @@
                                 </c:forEach>
                             </table>
                             <input type="submit" value="Update" name="action">
-                            <input type="submit" value="Clear">
+                            <input type="submit" value="Clear" name="action">
                         </div>
                     </form>
                     <%--  --%>
@@ -93,15 +93,15 @@
                     <div class="scrollContainer">
                         <c:choose>
                             <c:when test="${tableName == 'frequents'}">
-                                
+                                <p style="font-weight:bold">Frequents</p>
                                 <table>
                                     <tr>
                                         <td>Student ID:</td>
-                                        <td><input type="text" name="snum"></td>
+                                        <td><input type="text" name="snum" maxlength="4"></td>
                                     </tr>
                                     <tr>
                                         <td>Name:</td>
-                                        <td><input type="text" name="name"></td>
+                                        <td><input type="text" name="name" maxlength="15"></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -110,7 +110,7 @@
                                                 <tr>
                                                     <td>
                                                         <c:forEach var="row" items="${branch}">
-                                                            <input type="radio" name="updateThis" value="${row[0]}${row[1]}"> <c:out value="${row[0]}, ${row[1]}"/>
+                                                            <input type="radio" name="updateThis" value="${row[0]} ${row[1]}"> <c:out value="${row[0]}, ${row[1]}"/>
                                                             <br>
                                                         </c:forEach>
                                                     </td>
@@ -124,22 +124,23 @@
                                 <input type="reset" value="Reset">
                             </c:when>
                             <c:when test="${tableName == 'student'}">
+                                <p style="font-weight:bold">Student</p>
                                 <table>
                                     <tr>
                                         <td>SNum:</td>
-                                        <td><input type="text" name="snum" required></td>
+                                        <td><input type="text" name="snum" maxlength="4" required></td>
                                     </tr>
                                     <tr>
                                         <td>Name:</td>
-                                        <td><input type="text" name="name"></td>
+                                        <td><input type="text" name="name" maxlength="15"></td>
                                     </tr>
                                     <tr>
                                         <td>Major:</td>
-                                        <td><input type="text" name="major"></td>
+                                        <td><input type="text" name="major" maxlength="10"></td>
                                     </tr>
                                     <tr>
                                         <td>Hobby</td>
-                                        <td><input type="text" name="hobby"></td>
+                                        <td><input type="text" name="hobby" maxlength="25"></td>
                                     </tr>
                                 </table>
                                 <input type="submit" value="Insert" action="Add">
@@ -148,18 +149,19 @@
                                 <input type="reset" value="Reset">
                             </c:when>
                             <c:when test="${tableName == 'foodservice'}">
+                                <p style="font-weight:bold">Foodservice</p>
                                 <table>
                                     <tr>
                                         <td>Name:</td>
-                                        <td><input type="text" name="name" required></td>
+                                        <td><input type="text" name="name" maxlength="15" required></td>
                                     </tr>
                                     <tr>
                                         <td>Category:</td>
-                                        <td><input type="text" name="category"></td>
+                                        <td><input type="text" name="category" maxlength="10"></td>
                                     </tr>
                                     <tr>
                                         <td>Rate:</td>
-                                        <td><input type="text" name="rate"></td>
+                                        <td><input type="text" name="rate" maxlength="5"></td>
                                     </tr>
                                 </table>
                                 <input type="submit" value="Insert" action="Add">
@@ -168,18 +170,19 @@
                                 <input type="reset" value="Reset">
                             </c:when>
                             <c:when test="${tableName == 'branch'}">
+                                <p style="font-weight:bold">Branch</p>
                                 <table>
                                     <tr>
                                         <td>Name:</td>
-                                        <td><input type="text" name="name" required></td>
+                                        <td><input type="text" name="name" maxlength="15" required></td>
                                     </tr>
                                     <tr>
                                         <td>BNum:</td>
-                                        <td><input type="text" name="bnum" required></td>
+                                        <td><input type="text" name="bnum" maxlength="3" required></td>
                                     </tr>
                                     <tr>
                                         <td>Location:</td>
-                                        <td><input type="text" name="location"></td>
+                                        <td><input type="text" name="location" maxlength="25"></td>
                                     </tr>
                                     <tr>
                                         <td>Since:</td>
@@ -187,8 +190,73 @@
                                     </tr>
                                 </table>
                             </c:when>
+                            <c:when test="${tableName == 'food'}">
+                                <p style="font-weight:bold">Food</p>
+                                <table>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td><input type="text" name="name" maxlength="15" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cuisine:</td>
+                                        <td><input type="text" name="cuisine" maxlength="15"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type:</td>
+                                        <td><input type="text" name="type" maxlength="10"></td>
+                                    </tr>
+                                </table>
+                            </c:when>
+                            <c:when test="${tableName == 'provides'}">
+                                <p style="font-weight:bold">Provides</p>
+                                <table>
+                                    <tr>
+                                        <td>Food Service:</td>
+                                        <td>
+                                        <select name="foodservice">
+                                            <c:forEach var="fsname" items="${foodservice}">
+                                                <option value="${fsname}"><c:out value="${fsname}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Food:</td>
+                                        <td>
+                                        <select name="food">
+                                            <c:forEach var="fname" items="${food}">
+                                                <option value="${fname}"><c:out value="${fname}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price:</td>
+                                        <td><input type="text" name="type" maxlength="5"></td>
+                                    </tr>
+                                </table>
+                            </c:when>
+                            <c:when test="${tableName == 'likes'}">
+                                <p style="font-weight:bold">Likes</p>
+                                <table>
+                                    <tr>
+                                        <td>Snum:</td>
+                                        <td><input type="text" name="snum" maxlength="10" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Food:</td>
+                                        <td>
+                                        <select name="food">
+                                            <c:forEach var="fname" items="${food}">
+                                                <option value="${fname}"><c:out value="${fname}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </c:when>
                             <c:otherwise>
-                                <label>You must select frequents, student, foodservice, or branch to update</label>
+                                <label>You must select frequents, student, foods, provides, likes, foodservice, or branch to update</label>
                             </c:otherwise>
                         </c:choose>
                     </div>  
