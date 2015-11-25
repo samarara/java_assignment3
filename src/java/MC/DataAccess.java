@@ -122,6 +122,12 @@ public class DataAccess {
         return table;
     }
     
+    /*
+    DAO DML    
+    */
+    
+    //inserting data into student table
+    
     public boolean insertStudent(String SNUM, String name, String major, String hobby)
     {
         PreparedStatement pst = null;
@@ -148,6 +154,7 @@ public class DataAccess {
         return true;
     }
     
+    //deleting data from the student table
     public boolean deleteStudent(String SNUM, String name, String major, String hobby)
     {
         PreparedStatement pst = null;
@@ -174,6 +181,7 @@ public class DataAccess {
         return true;
     }
     
+    //inserting data into frequents table
     public boolean insertFrequents(String student, String fsName, String bnum)
     {
         PreparedStatement pst = null;
@@ -200,6 +208,7 @@ public class DataAccess {
         return true;
     }
     
+    //deleting data from the frequents table
     public boolean deleteFrequents(String student, String fsName, String bnum)
     {
         PreparedStatement pst = null;
@@ -225,6 +234,7 @@ public class DataAccess {
         return true;
     }
     
+    //inserting data into foodservice table
     public boolean insertFoodService(String name, String category, String rate)
     {
         PreparedStatement pst = null;
@@ -250,6 +260,7 @@ public class DataAccess {
         return true;
     }
     
+    //deleting data from the food service table
     public boolean deleteFoodService(String name, String category, String rate)
     {
         PreparedStatement pst = null;
@@ -262,6 +273,214 @@ public class DataAccess {
                 pst.setString(1, name);
                 pst.setString(2, category);
                 pst.setString(3, rate);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //update data on foodservice
+    public boolean updateFoodService(String name, String category, String rate)
+    {
+        PreparedStatement pst = null;
+        String query = "UPDATE foodservice SET Category=?, Rate=? WHERE Name=?";
+        try
+        {
+            if(conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, category);
+                pst.setString(2, rate);
+                pst.setString(3, name);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (Exception sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //insert into branch table
+    public boolean insertBranch(String name, String bNum, String location, String since)
+    {
+        PreparedStatement pst = null;
+        String query = "INSERT INTO branch VALUES (?, ?, ?, ?);";
+        try
+        {
+            if (conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, name);
+                pst.setString(2, bNum);
+                pst.setString(3, location);
+                pst.setString(4, since);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //delete from branch table
+    public boolean deleteBranch(String name, String bNum, String location, String since)
+    {
+        PreparedStatement pst = null;
+        String query = "DELETE FROM branch WHERE Name=? AND BNum=? AND Location=? AND Since=?";
+        try
+        {
+            if (conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, name);
+                pst.setString(2, bNum);
+                pst.setString(3, location);
+                pst.setString(4, since);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //isnsert into food
+    public boolean insertFood(String name, String cuisine, String type)
+    {
+        PreparedStatement pst = null;
+        String query = "INSERT INTO food VALUES (?, ?, ?);";
+        try
+        {
+            if (conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, name);
+                pst.setString(2, cuisine);
+                pst.setString(3, type);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //deleting data from the food  table
+     public boolean deleteFood(String name, String cuisine, String type)
+    {
+        PreparedStatement pst = null;
+        String query = "DELETE FROM food WHERE Name=? AND Cuisine=? AND Type=?";
+        try
+        {
+            if (conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, name);
+                pst.setString(2, cuisine);
+                pst.setString(3, type);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //update data on food table
+    public boolean updateFood(String name, String cuisine, String type)
+    {
+        PreparedStatement pst = null;
+        String query = "UPDATE food SET Cuisine=?, Type=? WHERE Name=?";
+        try
+        {
+            if(conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, cuisine);
+                pst.setString(2, type);
+                pst.setString(3, name);
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (Exception sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //insert into likes table
+    public boolean insertLikes(String student, String food)
+    {
+        PreparedStatement pst = null;
+        String query = "INSERT INTO likes VALUES (?, ?);";
+        try
+        {
+            if (conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, student);
+                pst.setString(2, food); 
+            }
+            if (pst != null)
+            {
+                pst.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    //delete into likes table
+    public boolean deleteLikes(String student, String food)
+    {
+        PreparedStatement pst = null;
+        String query = "DELETE FROM likes WHERE Student=? AND Food=?";
+        try
+        {
+            if (conn != null)
+            {
+                pst = conn.prepareStatement(query);
+                pst.setString(1, student);
+                pst.setString(2, food); 
             }
             if (pst != null)
             {
