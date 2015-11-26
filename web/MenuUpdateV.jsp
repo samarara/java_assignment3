@@ -94,7 +94,7 @@
                         <c:choose>
                             <c:when test="${tableName == 'frequents'}">
                                 <p style="font-weight:bold">Frequents</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>Student ID:</td>
                                         <td><input type="text" name="snum" maxlength="4"></td>
@@ -125,7 +125,7 @@
                             </c:when>
                             <c:when test="${tableName == 'student'}">
                                 <p style="font-weight:bold">Student</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>SNum:</td>
                                         <td><input type="text" name="snum" maxlength="4" required></td>
@@ -150,7 +150,7 @@
                             </c:when>
                             <c:when test="${tableName == 'foodservice'}">
                                 <p style="font-weight:bold">Foodservice</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>Name:</td>
                                         <td><input type="text" name="name" maxlength="15" required></td>
@@ -171,7 +171,7 @@
                             </c:when>
                             <c:when test="${tableName == 'branch'}">
                                 <p style="font-weight:bold">Branch</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>Name:</td>
                                         <td><input type="text" name="name" maxlength="15" required></td>
@@ -195,7 +195,7 @@
                             </c:when>
                             <c:when test="${tableName == 'food'}">
                                 <p style="font-weight:bold">Food</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>Name:</td>
                                         <td><input type="text" name="name" maxlength="15" required></td>
@@ -216,7 +216,7 @@
                             </c:when>
                             <c:when test="${tableName == 'provides'}">
                                 <p style="font-weight:bold">Provides</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>Food Service:</td>
                                         <td>
@@ -249,7 +249,7 @@
                             </c:when>
                             <c:when test="${tableName == 'likes'}">
                                 <p style="font-weight:bold">Likes</p>
-                                <table>
+                                <table name="${tableName}">
                                     <tr>
                                         <td>Snum:</td>
                                         <td><input type="text" name="snum" maxlength="10" required></td>
