@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -84,7 +85,8 @@ public class MenuManagerC extends HttpServlet {
         //compile ArrayList of table names
         ArrayList result = da.getTables();
         //save object to forward
-        request.setAttribute("result", result);
+        HttpSession session = request.getSession();
+        session.setAttribute("result", result);
         
         String action = request.getParameter("action");
         String selected;
@@ -92,14 +94,19 @@ public class MenuManagerC extends HttpServlet {
             case "Refresh":
                 selected = (String)request.getParameter("showThis");
                 ArrayList table = da.query(selected);
-                request.setAttribute("table", table);
+                //request.setAttribute("table", table);
+                session.setAttribute("table", table);
+                
                 url = "/MenuRefreshV.jsp";
                 break;
             case "Update":
                 selected = request.getParameter("updateThis");
-                request.setAttribute("tableName", selected);
+                //request.setAttribute("tableName", selected);
+                session.setAttribute("tableName", selected);
+                
                 ArrayList branch = da.getBranch();
-                request.setAttribute("branch", branch);
+                //request.setAttribute("branch", branch);
+                session.setAttribute("branch", branch);
                 url = "/MenuUpdateV.jsp";
                 break;
             case "Clear":
