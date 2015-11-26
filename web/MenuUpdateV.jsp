@@ -189,6 +189,9 @@
                                         <td><input type="date" name="since"></td>
                                     </tr>
                                 </table>
+                                <input type="submit" value="Insert" action="Add">
+                                <input type="submit" value="Delete" action="Delete">
+                                <input type="reset" value="Reset">
                             </c:when>
                             <c:when test="${tableName == 'food'}">
                                 <p style="font-weight:bold">Food</p>
@@ -206,6 +209,10 @@
                                         <td><input type="text" name="type" maxlength="10"></td>
                                     </tr>
                                 </table>
+                                <input type="submit" value="Insert" action="Add">
+                                <input type="submit" value="Update" action="Update">
+                                <input type="submit" value="Delete" action="Delete">
+                                <input type="reset" value="Reset">
                             </c:when>
                             <c:when test="${tableName == 'provides'}">
                                 <p style="font-weight:bold">Provides</p>
@@ -235,6 +242,10 @@
                                         <td><input type="text" name="type" maxlength="5"></td>
                                     </tr>
                                 </table>
+                                <input type="submit" value="Insert" action="Add">
+                                <input type="submit" value="Update" action="Update">
+                                <input type="submit" value="Delete" action="Delete">
+                                <input type="reset" value="Reset">
                             </c:when>
                             <c:when test="${tableName == 'likes'}">
                                 <p style="font-weight:bold">Likes</p>
@@ -254,6 +265,10 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <input type="submit" value="Insert" action="Add">
+                               
+                                <input type="submit" value="Delete" action="Delete">
+                                <input type="reset" value="Reset">
                             </c:when>
                             <c:otherwise>
                                 <label>You must select frequents, student, foods, provides, likes, foodservice, or branch to update</label>
