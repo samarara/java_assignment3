@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,6 +44,38 @@ public class UpdateManagerC extends HttpServlet {
             out.println("<h1>Servlet UpdateManagerC at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            
+            String url = "/HomeV.jsp";
+            String conURL = "jdbc:mysql://localhost:3306/fs2";
+            String user = "root";
+            String pass = "sachi800";
+            //log in to database
+            DataAccess da = new DataAccess(conURL, user, pass);
+            HttpSession session = request.getSession();
+            String action = request.getParameter("action");
+            String selected;
+            switch (action) {
+                case "Add":
+                    selected = (String)request.getParameter("showThis");
+                    
+                    //request.setAttribute("table", table);
+                    session.setAttribute("table", table);
+
+                    url = "/MenuRefreshV.jsp";
+                    break;
+                case "Delete":
+                    selected = request.getParameter("updateThis");
+                    //request.setAttribute("tableName", selected);
+                    session.setAttribute("tableName", selected);
+
+                    //request.setAttribute("branch", branch);
+                    session.setAttribute("branch", branch);
+                    url = "/MenuUpdateV.jsp";
+                    break;
+                case "Update":
+                    url ="/HomeV.jsp";
+                    break;
+            }
         }
     }
 
