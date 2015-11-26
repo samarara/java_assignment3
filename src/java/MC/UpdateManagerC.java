@@ -53,10 +53,91 @@ public class UpdateManagerC extends HttpServlet {
             DataAccess da = new DataAccess(conURL, user, pass);
             HttpSession session = request.getSession();
             String action = request.getParameter("action");
+            String tableName = (String)session.getAttribute("tableName");
             String selected;
             switch (action) {
                 case "Add":
-                    selected = (String)request.getParameter("showThis");
+                    switch (tableName){
+                        case "frequents":
+                            String name = request.getParameter("name");
+                            String[] fsNamAndBranch = request.getParameter("updateThis").split(" ");
+                            String fsName = fsNamAndBranch[0];
+                            String bnum = fsNamAndBranch[1];
+                            if (da.insertFrequents(name, fsName, bnum) == true){
+                            
+                                //sends the user to sucess page
+                            }
+                            else{
+                                //sends the user to error page
+                            }
+                        break;
+                        case "student":
+                            String snum = request.getParameter("snum");
+                            String nameStu = request.getParameter("name");
+                            String major = request.getParameter("major");
+                            String hobby = request.getParameter("hobby");
+                            if (da.insertStudent(snum, nameStu, major, hobby) == true){
+                            
+                                //sends the user to sucess page
+                            }
+                            else{
+                                //sends the user to error page
+                            }
+                        break;
+                        case "foodservice":
+                            String nameFs = request.getParameter("name");
+                            String category = request.getParameter("category");
+                            String rate = request.getParameter("rate");
+                            if (da.insertFoodService(nameFs, category, rate) == true){
+                            
+                                //sends the user to sucess page
+                            }
+                            else{
+                                //sends the user to error page
+                            }
+                        break;
+                        case "branch":
+                            String nameBr = request.getParameter("name");
+                            String bNumBr = request.getParameter("bnum");
+                            String location = request.getParameter("location");
+                            String since = request.getParameter("since");
+                            if (da.insertBranch(nameBr, bNumBr, location, since) == true){
+                            
+                                //sends the user to sucess page
+                            }
+                            else{
+                                //sends the user to error page
+                            }
+                        break;
+                        case "food":
+                            String food = request.getParameter("name");
+                            String cuisine = request.getParameter("cuisine");
+                            String type = request.getParameter("type");
+                            if (da.insertFood(food, cuisine, type) == true){
+                            
+                                //sends the user to sucess page
+                            }
+                            else{
+                                //sends the user to error page
+                            }
+                        break;
+                        case "provides":
+                        break;
+                        case "likes":
+                            String snumL = request.getParameter("snum");
+                            String foodL = request.getParameter("food");
+                            if (da.insertLikes(snumL, foodL) == true){
+                            
+                                //sends the user to sucess page
+                            }
+                            else{
+                                //sends the user to error page
+                            }
+                        break;
+                    }
+                            
+                    
+                    selected = (String)request.getParameter("showTh1is");
                     
                     //request.setAttribute("table", table);
                     session.setAttribute("table", table);
@@ -75,6 +156,7 @@ public class UpdateManagerC extends HttpServlet {
                 case "Update":
                     url ="/HomeV.jsp";
                     break;
+                    
             }
         }
     }
