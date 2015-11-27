@@ -89,6 +89,7 @@ public class MenuManagerC extends HttpServlet {
         session.setAttribute("result", result);
         
         String action = request.getParameter("action");
+        session.setAttribute("action", action);
         String selected;
         switch (action) {
             case "Refresh":

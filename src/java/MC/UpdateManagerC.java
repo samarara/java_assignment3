@@ -33,17 +33,7 @@ public class UpdateManagerC extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateManagerC</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateManagerC at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
             
             String url = "/HomeV.jsp";
             String conURL = "jdbc:mysql://localhost:3306/fs2";
@@ -52,7 +42,7 @@ public class UpdateManagerC extends HttpServlet {
             //log in to database
             DataAccess da = new DataAccess(conURL, user, pass);
             HttpSession session = request.getSession();
-            String action = request.getParameter("action");
+            String action = (String)session.getAttribute("action");
             String tableName = (String)session.getAttribute("tableName");
             String selected;
             switch (action) {
@@ -65,7 +55,7 @@ public class UpdateManagerC extends HttpServlet {
                             String bnum = fsNamAndBranch[1];
                             if (da.insertFrequents(name, fsName, bnum) == true){
                             
-                                //sends the user to sucess page
+                                url = ("/HomeV.jsp");
                             }
                             else{
                                 //sends the user to error page
@@ -78,7 +68,7 @@ public class UpdateManagerC extends HttpServlet {
                             String hobby = request.getParameter("hobby");
                             if (da.insertStudent(snum, nameStu, major, hobby) == true){
                             
-                                //sends the user to sucess page
+                                url = ("/HomeV.jsp");
                             }
                             else{
                                 //sends the user to error page
@@ -90,7 +80,7 @@ public class UpdateManagerC extends HttpServlet {
                             String rate = request.getParameter("rate");
                             if (da.insertFoodService(nameFs, category, rate) == true){
                             
-                                //sends the user to sucess page
+                                url = ("/HomeV.jsp");
                             }
                             else{
                                 //sends the user to error page
@@ -103,7 +93,7 @@ public class UpdateManagerC extends HttpServlet {
                             String since = request.getParameter("since");
                             if (da.insertBranch(nameBr, bNumBr, location, since) == true){
                             
-                                //sends the user to sucess page
+                                url = ("/HomeV.jsp");
                             }
                             else{
                                 //sends the user to error page
@@ -115,7 +105,7 @@ public class UpdateManagerC extends HttpServlet {
                             String type = request.getParameter("type");
                             if (da.insertFood(food, cuisine, type) == true){
                             
-                                //sends the user to sucess page
+                                url = ("HomeV.jsp");
                             }
                             else{
                                 //sends the user to error page
@@ -128,7 +118,7 @@ public class UpdateManagerC extends HttpServlet {
                             String foodL = request.getParameter("food");
                             if (da.insertLikes(snumL, foodL) == true){
                             
-                                //sends the user to sucess page
+                                url = ("HomeV.jsp");
                             }
                             else{
                                 //sends the user to error page
@@ -140,9 +130,9 @@ public class UpdateManagerC extends HttpServlet {
                     selected = (String)request.getParameter("showTh1is");
                     
                     //request.setAttribute("table", table);
-                    session.setAttribute("table", table);
+                    //session.setAttribute("table", table);
 
-                    url = "/MenuRefreshV.jsp";
+                    //url = "/MenuRefreshV.jsp";
                     break;
                 case "Delete":
                     selected = request.getParameter("updateThis");
@@ -150,16 +140,17 @@ public class UpdateManagerC extends HttpServlet {
                     session.setAttribute("tableName", selected);
 
                     //request.setAttribute("branch", branch);
-                    session.setAttribute("branch", branch);
-                    url = "/MenuUpdateV.jsp";
+                    //session.setAttribute("branch", branch);
+                    //url = "/MenuUpdateV.jsp";
                     break;
                 case "Update":
-                    url ="/HomeV.jsp";
+                    //url ="/HomeV.jsp";
                     break;
                     
-            }
+            }            
+            this.getServletContext().getRequestDispatcher(url).forward(request, response);
         }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

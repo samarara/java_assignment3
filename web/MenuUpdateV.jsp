@@ -89,7 +89,7 @@
                     </form>
                     <%--  --%>
                     <br>
-                    <form>
+                    <form action="UpdateManagerC" method="post">
                     <div class="scrollContainer">
                         <c:choose>
                             <c:when test="${tableName == 'frequents'}">
